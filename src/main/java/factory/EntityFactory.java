@@ -1,6 +1,7 @@
-package com.company.minispec.factory;
+package main.java.factory;
 
-import com.company.minispec.model.Entity;
+
+import main.java.model.Entity;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

@@ -1,4 +1,4 @@
-package com.company.minispec;
+package main.java;
 
 public class Main {
 
