@@ -1,6 +1,6 @@
 
 
-package com.company.minispec.visitor;
+package main.java.visitor;
 
 public interface IVisitable {
     void accept(IVisitor visitor);

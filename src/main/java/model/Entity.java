@@ -1,9 +1,12 @@
-package com.company.minispec.model;
+package main.java.model;
+
+import main.java.visitor.IVisitable;
+import main.java.visitor.IVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Entity {
+public class Entity implements IVisitable {
     protected String name;
     protected List<Attribute> attributes;
 
@@ -18,6 +21,11 @@ public class Entity {
 
     public List<Attribute> getAttributes(){
         return this.attributes;
+    }
+
+    @Override
+    public void accept(IVisitor visitor) {
+
     }
 }
 
