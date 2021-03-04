@@ -33,8 +33,8 @@ public final class EntityFactory {
         return instance;
     }
 
-    static List<Entity> materializeFromXml(String filename) throws ParserConfigurationException, SAXException, IOException{
-        List<Entity> listeEntity = new ArrayList<Entity>();
+    public List<Entity> materializeFromXml(String filename) throws ParserConfigurationException, SAXException, IOException{
+        List<Entity> listeEntity = new ArrayList<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 	    DocumentBuilder builder = factory.newDocumentBuilder();
 	    Document document = builder.parse(new File(filename));
@@ -53,8 +53,25 @@ public final class EntityFactory {
         return listeEntity;
     }
 
+    public List<Entity> materializeFromXml(Document document){
+        List<Entity> listeEntity = new ArrayList<>();
+	    
+	    document.getDocumentElement().normalize();
 
-    static Entity createEntity(Node node){
+        NodeList nList = document.getElementsByTagName("entity");
+
+        Entity currentEntity = null;
+
+        for (int i = 0; i < nList.getLength(); i++){
+            currentEntity = createEntity(nList.item(i));
+            listeEntity.add(currentEntity);
+        }        
+
+        return listeEntity;
+    }
+
+
+    public Entity createEntity(Node node){
         Entity e = null;
         if (node.getNodeType() == Node.ELEMENT_NODE){
             Element entityElement = (Element) node;
