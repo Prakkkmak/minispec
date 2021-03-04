@@ -34,6 +34,13 @@ public class Visitor implements IVisitor{
 
     @Override
     public void visitAttribute(Attribute attribute) {
-        //TODO
+        generatedCode.append(attribute.getType());
+        generatedCode.append(" ");
+        generatedCode.append(attribute.getName());
+        if(null != attribute.getDefaultValue()){
+            generatedCode.append("=");
+            generatedCode.append(attribute.getDefaultValue());
+        }
+        generatedCode.append(";");
     }
 }
