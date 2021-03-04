@@ -25,7 +25,7 @@ public class Entity implements IVisitable {
 
     @Override
     public void accept(IVisitor visitor) {
-
+        visitor.visitEntity(this);
     }
 }
 

@@ -20,7 +20,7 @@ public class Visitor implements IVisitor{
     public void visitEntity(Entity entity) {
         generatedCode.append("public class ");
         generatedCode.append(entity.getName());
-        generatedCode.append(" { \n");
+        generatedCode.append("{");
         for (Attribute attribute : entity.getAttributes()) {
             attribute.accept(this);
         }
