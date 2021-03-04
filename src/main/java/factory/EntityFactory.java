@@ -43,7 +43,12 @@ public final class EntityFactory {
 
         NodeList nList = document.getElementsByTagName("entity");
 
-        
+        Entity currentEntity = null;
+
+        for (int i = 0; i < nList.getLength(); i++){
+            currentEntity = createEntity(nList.item(i));
+            listeEntity.add(currentEntity);
+        }        
 
         return listeEntity;
     }
