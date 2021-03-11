@@ -4,6 +4,7 @@ package main.java.factory;
 import main.java.model.Attribute;
 import main.java.model.Entity;
 
+import main.java.model.Method;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -23,6 +24,7 @@ public final class EntityFactory {
 
     private static EntityFactory instance = null;
     AttributeFactory attributeFactory;
+    MethodFactory methodFactory;
 
     private EntityFactory(){
 
@@ -75,9 +77,11 @@ public final class EntityFactory {
 
     public Entity createEntity(Node node){
 
+        methodFactory = MethodFactory.getInstance();
         attributeFactory = AttributeFactory.getInstance();
         Entity e = null;
         NodeList nListAttribute;
+        NodeList nListMethods;
         if (node.getNodeType() == Node.ELEMENT_NODE){
             Element entityElement = (Element) node;
             String name = entityElement.getAttribute("name");
@@ -87,6 +91,13 @@ public final class EntityFactory {
                 for (int i = 0; i < nListAttribute.getLength(); i++){
                     Attribute attribute = attributeFactory.createAttribute(nListAttribute.item(i));
                     e.addAttribute(attribute);
+                }
+            }
+            nListMethods = entityElement.getElementsByTagName("method");
+            if(nListMethods != null){
+                for (int i = 0; i<nListMethods.getLength(); i++){
+                    Method method = methodFactory.createMethod(nListMethods.item(i));
+                    e.addMethod(method);
                 }
             }
         }

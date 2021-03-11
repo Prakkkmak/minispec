@@ -37,5 +37,9 @@ public class Entity implements IVisitable {
     public void accept(IVisitor visitor) {
         visitor.visitEntity(this);
     }
+
+    public void addMethod(Method method) {
+        this.methods.add(method);
+    }
 }
 

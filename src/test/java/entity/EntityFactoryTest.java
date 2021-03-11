@@ -56,8 +56,10 @@ public class EntityFactoryTest {
     public void testMaterializeFromXmlWithAttribute(){
         String xml = "<entities>"
                 +"<entity name=\"patrick\">"
+                +"<attributes>"
                 +"<attribute type=\"int\" name=\"compteur\" value=\"10\"/>"
                 +"<attribute type=\"int\" name=\"valeur\" value=\"15\"/>"
+                +"</attributes>"
                 +"</entity>"
                 +"</entities>";
         DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
