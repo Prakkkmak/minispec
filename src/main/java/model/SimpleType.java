@@ -3,13 +3,20 @@ package main.java.model;
 public class SimpleType extends Type{
 
 
+    protected String symbol;
+
     public SimpleType(String symbol) {
-        super(symbol, 0, 1);
+        super(0, 1);
+        this.symbol = symbol;
     }
 
     public SimpleType(String symbol, Boolean notNull) {
-        super(symbol, 0, 1);
+        this(symbol);
         if(notNull) this.min = 1;
+    }
+
+    public String getSymbol() {
+        return symbol;
     }
 
     @Override

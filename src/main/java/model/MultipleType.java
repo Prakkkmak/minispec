@@ -2,7 +2,7 @@ package main.java.model;
 
 public class MultipleType extends Type{
 
-    enum Collection {
+    public enum Collection {
         ARRAY("Array"),
         BAG("Bag"),
         LIST("List"),
@@ -18,16 +18,24 @@ public class MultipleType extends Type{
 
     protected Collection collection;
 
-    public MultipleType(String symbol, Integer min, Integer max) {
-        super(symbol, min, max);
+    protected Type type;
+
+    public MultipleType(Collection collection, Type type, Integer min, Integer max) {
+        super(min, max);
+        this.collection = collection;
+        this.type = type;
     }
 
-    public MultipleType(String symbol) {
-        super(symbol, 0, Integer.MAX_VALUE);
+    public MultipleType(Type type) {
+        this(Collection.LIST, type);
+    }
+
+    public MultipleType(Collection collection, Type type) {
+        this(collection, type, 0, Integer.MAX_VALUE);
     }
 
     @Override
     public String toString() {
-        return this.collection.name + "<" + this.symbol + ">";
+        return this.collection.name + "<" + this.type.toString() + ">";
     }
 }
