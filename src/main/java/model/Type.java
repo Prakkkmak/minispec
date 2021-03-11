@@ -1,6 +1,7 @@
 package main.java.model;
 
 public abstract class Type {
+
     protected Integer min;
     protected Integer max;
 

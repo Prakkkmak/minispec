@@ -1,7 +1,13 @@
 package main.java.model;
 
 public class SimpleType extends Type{
-
+    public static Type STRING = new SimpleType("String");
+    public static Type CHARACTER = new SimpleType("Character");
+    public static Type INTEGER = new SimpleType("Integer");
+    public static Type LONG = new SimpleType("Long");
+    public static Type DOUBLE = new SimpleType("Double");
+    public static Type FLOAT = new SimpleType("Float");
+    public static Type VOID = new SimpleType("void");
 
     protected String symbol;
 

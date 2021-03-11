@@ -5,16 +5,16 @@ import main.java.visitor.IVisitor;
 
 public class Attribute implements IVisitable {
 
-    protected String type;
+    protected Type type;
     protected String name;
     protected String defaultValue;
 
-    public Attribute(String type, String name){
+    public Attribute(String name, Type type){
         this.type = type;
         this.name = name;
     }
 
-    public String getType(){
+    public Type getType(){
         return type;
     }
 
