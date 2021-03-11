@@ -2,6 +2,7 @@ package test.java.visitor;
 
 import main.java.model.Attribute;
 import main.java.model.Entity;
+import main.java.model.Method;
 import main.java.visitor.IVisitor;
 import main.java.visitor.Visitor;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,5 +52,13 @@ class VisitorTest {
         attribute.setDefaultValue("999");
         attribute.accept(visitor);
         assertEquals("int a=999;", visitor.getGeneratedCode());
+    }
+
+    @Test
+    void visitMethod() {
+        Method method = new Method("test", "String", "public");
+        method.accept(visitor);
+        System.out.println(visitor.getGeneratedCode());
+        assertEquals("public String test(){return new String();}", visitor.getGeneratedCode());
     }
 }

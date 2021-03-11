@@ -9,9 +9,11 @@ import java.util.List;
 public class Entity implements IVisitable {
     protected String name;
     protected List<Attribute> attributes;
+    protected List<Method> methods;
 
     public Entity(String name){
         attributes = new ArrayList<>();
+        methods = new ArrayList<>();
         this.name = name;
     }
 

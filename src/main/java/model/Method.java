@@ -2,6 +2,7 @@ package main.java.model;
 
 import main.java.visitor.IVisitable;
 import main.java.visitor.IVisitor;
+import org.w3c.dom.Attr;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,11 +17,11 @@ public class Method implements IVisitable {
 
     protected List<Attribute> attributes;
 
-    public Method(String name,String type, String scope){
+    public Method(String name, String type, String scope){
         this.attributes = new ArrayList<>();
-        this.scope = scope;
-        this.type = type;
         this.name = name;
+        this.type = type;
+        this.scope = scope;
     }
 
     public Method(String name, String type){
@@ -29,6 +30,22 @@ public class Method implements IVisitable {
 
     public Method(String name){
         this(name, "void", null);
+    }
+
+    public String getScope() {
+        return scope;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Attribute> getAttributes() {
+        return attributes;
     }
 
     @Override

@@ -1,5 +1,3 @@
-
-
 package main.java.visitor;
 
 public interface IVisitable {
