@@ -26,6 +26,10 @@ public class Visitor implements IVisitor{
         generatedCode.append("{");
         for (Attribute attribute : entity.getAttributes()) {
             attribute.accept(this);
+            generatedCode.append(";");
+        }
+        for (Method method : entity.getMethods()) {
+            method.accept(this);
         }
         generatedCode.append("}");
     }
@@ -44,7 +48,6 @@ public class Visitor implements IVisitor{
             generatedCode.append("=");
             generatedCode.append(attribute.getDefaultValue());
         }
-        generatedCode.append(";");
     }
 
     @Override

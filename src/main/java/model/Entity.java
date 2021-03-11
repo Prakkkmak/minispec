@@ -25,6 +25,10 @@ public class Entity implements IVisitable {
         return this.attributes;
     }
 
+    public List<Method> getMethods() {
+        return methods;
+    }
+
     @Override
     public void accept(IVisitor visitor) {
         visitor.visitEntity(this);

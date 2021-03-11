@@ -35,6 +35,15 @@ class VisitorTest {
     }
 
     @Test
+    void visitEntityWithAttributeAndMethods() {
+        Entity entity = new Entity("MaClasse");
+        entity.getAttributes().add(new Attribute("int", "a"));
+        entity.getMethods().add(new Method("test", "String", "public"));
+        entity.accept(visitor);
+        assertEquals("public class MaClasse{int a;public String test(){return new String();}}", visitor.getGeneratedCode());
+    }
+
+    @Test
     void visitModel() {
 
     }
@@ -43,7 +52,7 @@ class VisitorTest {
     void visitAttribute() {
         Attribute attribute = new Attribute("int", "a");
         attribute.accept(visitor);
-        assertEquals("int a;", visitor.getGeneratedCode());
+        assertEquals("int a", visitor.getGeneratedCode());
     }
 
     @Test
@@ -51,7 +60,7 @@ class VisitorTest {
         Attribute attribute = new Attribute("int", "a");
         attribute.setDefaultValue("999");
         attribute.accept(visitor);
-        assertEquals("int a=999;", visitor.getGeneratedCode());
+        assertEquals("int a=999", visitor.getGeneratedCode());
     }
 
     @Test
