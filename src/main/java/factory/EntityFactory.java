@@ -1,6 +1,7 @@
 package main.java.factory;
 
 
+import main.java.model.Attribute;
 import main.java.model.Entity;
 
 import org.w3c.dom.Document;
@@ -21,6 +22,7 @@ import javax.xml.parsers.ParserConfigurationException;
 public final class EntityFactory {
 
     private static EntityFactory instance = null;
+    AttributeFactory attributeFactory;
 
     private EntityFactory(){
 
@@ -72,11 +74,21 @@ public final class EntityFactory {
 
 
     public Entity createEntity(Node node){
+
+        attributeFactory = AttributeFactory.getInstance();
         Entity e = null;
+        NodeList nListAttribute;
         if (node.getNodeType() == Node.ELEMENT_NODE){
             Element entityElement = (Element) node;
             String name = entityElement.getAttribute("name");
             e = new Entity(name);
+            nListAttribute = entityElement.getElementsByTagName("attribute");
+            if (nListAttribute != null){
+                for (int i = 0; i < nListAttribute.getLength(); i++){
+                    Attribute attribute = attributeFactory.createAttribute(nListAttribute.item(i));
+                    e.addAttribute(attribute);
+                }
+            }
         }
         return e;
     }
