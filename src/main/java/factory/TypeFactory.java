@@ -29,13 +29,13 @@ public class TypeFactory {
             else{
                 switch (e.getAttribute("symbol")){
                     case "List":
-                        return new MultipleType(MultipleType.Collection.LIST, createType(currentNode.getFirstChild()));
+                        return new MultipleType(MultipleType.Collection.LIST, createType(currentNode.getFirstChild().getNextSibling()));
                     case "Bag":
-                        return new MultipleType(MultipleType.Collection.BAG, createType(currentNode.getFirstChild()));
+                        return new MultipleType(MultipleType.Collection.BAG, createType(currentNode.getFirstChild().getNextSibling()));
                     case "Array":
-                        return new MultipleType(MultipleType.Collection.ARRAY, createType(currentNode.getFirstChild()));
+                        return new MultipleType(MultipleType.Collection.ARRAY, createType(currentNode.getFirstChild().getNextSibling()));
                     case "Set":
-                        return new MultipleType(MultipleType.Collection.SET, createType(currentNode.getFirstChild()));
+                        return new MultipleType(MultipleType.Collection.SET, createType(currentNode.getFirstChild().getNextSibling()));
                     default:
                         throw new IllegalStateException("Unexpected value: " + e.getAttribute("symbol"));
                 }
