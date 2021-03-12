@@ -32,6 +32,14 @@ class VisitorTest {
     }
 
     @Test
+    void visitEntityWithInheritance() {
+        Entity entity = new Entity("MaClasse", "ClasseB");
+        entity.getAttributes().add(new Attribute("a", SimpleType.INTEGER));
+        entity.accept(visitor);
+        assertEquals("public class MaClasse extends ClasseB{Integer a;}", visitor.getGeneratedCode());
+    }
+
+    @Test
     void visitEntityWithAttributeAndMethods() {
         Entity entity = new Entity("MaClasse");
         entity.getAttributes().add(new Attribute("a", SimpleType.INTEGER));
@@ -42,7 +50,13 @@ class VisitorTest {
 
     @Test
     void visitModel() {
-
+        Model model = new Model("Model1");
+        Entity entity1 = new Entity("MaClasse");
+        Entity entity2 = new Entity("MaClasse");
+        model.getEntities().add(entity1);
+        model.getEntities().add(entity2);
+        model.accept(visitor);
+        assertEquals("package Model1;public class MaClasse{}public class MaClasse{}", visitor.getGeneratedCode());
     }
 
     @Test
@@ -64,7 +78,6 @@ class VisitorTest {
     void visitMethod() {
         Method method = new Method("test", SimpleType.STRING, "public");
         method.accept(visitor);
-        System.out.println(visitor.getGeneratedCode());
         assertEquals("public String test(){return new String();}", visitor.getGeneratedCode());
     }
 }

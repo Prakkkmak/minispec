@@ -3,6 +3,8 @@ package main.java.model;
 import main.java.visitor.IVisitable;
 import main.java.visitor.IVisitor;
 
+import java.util.Objects;
+
 public class Attribute implements IVisitable {
 
     protected Type type;
@@ -33,5 +35,18 @@ public class Attribute implements IVisitable {
     @Override
     public void accept(IVisitor visitor) {
         visitor.visitAttribute(this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Attribute attribute = (Attribute) o;
+        return Objects.equals(name, attribute.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

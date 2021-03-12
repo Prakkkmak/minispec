@@ -23,6 +23,10 @@ public class Visitor implements IVisitor{
     public void visitEntity(Entity entity) {
         generatedCode.append("public class ");
         generatedCode.append(entity.getName());
+        if(null != entity.getInherits()){
+            generatedCode.append(" extends ");
+            generatedCode.append(entity.getInherits());
+        }
         generatedCode.append("{");
         for (Attribute attribute : entity.getAttributes()) {
             attribute.accept(this);
@@ -36,7 +40,12 @@ public class Visitor implements IVisitor{
 
     @Override
     public void visitModel(Model model) {
-        //TODO
+        generatedCode.append("package ");
+        generatedCode.append(model.getName());
+        generatedCode.append(";");
+        for (Entity e : model.getEntities()) {
+            e.accept(this);
+        }
     }
 
     @Override
@@ -66,7 +75,7 @@ public class Visitor implements IVisitor{
             attributes.get(i).accept(this);
         }
         generatedCode.append("){");
-        if(!"void".equals(method.getType())){
+        if(!"void".equals(method.getType().toString())){
             generatedCode.append("return new ");
             generatedCode.append(method.getType());
             generatedCode.append("();");
