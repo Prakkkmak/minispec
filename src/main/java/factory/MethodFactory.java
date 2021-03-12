@@ -23,7 +23,7 @@ public class MethodFactory {
         Method method = null;
         if (node.getNodeType() == Node.ELEMENT_NODE){
             Element methodElement = (Element) node;
-            method = new Method(methodElement.getAttribute("name"), factoryType.createType(node.getFirstChild()), methodElement.getAttribute("scope"));
+            method = new Method(methodElement.getAttribute("name"), factoryType.createType(node.getFirstChild().getNextSibling()), methodElement.getAttribute("scope"));
         }
         return method;
     }
