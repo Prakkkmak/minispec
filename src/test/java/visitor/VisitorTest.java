@@ -45,7 +45,7 @@ class VisitorTest {
         entity.getAttributes().add(new Attribute("a", SimpleType.INTEGER));
         entity.getMethods().add(new Method("test", SimpleType.STRING, "public"));
         entity.accept(visitor);
-        assertEquals("public class MaClasse{Integer a;public String test(){return new String();}}", visitor.getGeneratedCode());
+        assertEquals("public class MaClasse{Integer a;public String test(){/* TODO Generated Code */return new String();}}", visitor.getGeneratedCode());
     }
 
     @Test
@@ -78,6 +78,6 @@ class VisitorTest {
     void visitMethod() {
         Method method = new Method("test", SimpleType.STRING, "public");
         method.accept(visitor);
-        assertEquals("public String test(){return new String();}", visitor.getGeneratedCode());
+        assertEquals("public String test(){/* TODO Generated Code */return new String();}", visitor.getGeneratedCode());
     }
 }
