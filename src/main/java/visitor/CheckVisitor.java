@@ -68,12 +68,10 @@ public class CheckVisitor implements IVisitor{
         if(haveCycles()){
             isModelValid = false;
             System.out.println("ERROR Cycle");
-            return;
         }
-        if(haveDuplicateDeclaration(model.getEntities())){
+        else if(haveDuplicateDeclaration(model.getEntities())){
             isModelValid = false;
-            System.out.println("ERROR duplicate declaration");
-            return;
+            System.out.println("ERROR Duplicate declaration");
         }
     }
 

@@ -75,6 +75,7 @@ public class Visitor implements IVisitor{
             attributes.get(i).accept(this);
         }
         generatedCode.append("){");
+        generatedCode.append("/* TODO Generated Code */");
         if(!"void".equals(method.getType().toString())){
             generatedCode.append("return new ");
             generatedCode.append(method.getType());
