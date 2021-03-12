@@ -85,7 +85,8 @@ public final class EntityFactory {
         if (node.getNodeType() == Node.ELEMENT_NODE){
             Element entityElement = (Element) node;
             String name = entityElement.getAttribute("name");
-            e = new Entity(name);
+            String inherits = entityElement.getAttribute("inherits");
+            e = new Entity(name, inherits);
             nListAttribute = entityElement.getElementsByTagName("attribute");
             if (nListAttribute != null){
                 for (int i = 0; i < nListAttribute.getLength(); i++){

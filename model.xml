@@ -1,0 +1,28 @@
+<model name="simulateur">
+    <entities>
+        <entity name ="ElementMobile">
+            <attributes>
+                <attribute name="positions">
+                    <multipletype symbol="List">
+                        <simpletype symbol="double"/>
+                    </multipletype>
+                </attribute>
+            </attributes>
+        </entity>
+        <entity name ="Satellite" inherits="ElementMobile">
+        </entity>
+        <entity name ="Balise" inherits="ElementMobile">
+            <attributes>
+                <attribute name="data">
+                    <simpletype symbol="int"/>
+                </attribute>
+            </attributes>
+            <methods>
+                <method name="recordData">
+                    <simpletype symbol="void"/>
+                </method>
+            </methods>
+        </entity>
+    </entities>
+
+</model>

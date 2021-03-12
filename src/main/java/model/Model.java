@@ -17,6 +17,7 @@ public class Model implements IVisitable {
         entities = new ArrayList<>();
     }
 
+
     public String getName() {
         return name;
     }
