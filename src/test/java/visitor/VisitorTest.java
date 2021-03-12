@@ -1,9 +1,6 @@
 package test.java.visitor;
 
-import main.java.model.Attribute;
-import main.java.model.Entity;
-import main.java.model.Method;
-import main.java.visitor.IVisitor;
+import main.java.model.*;
 import main.java.visitor.Visitor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,18 +26,18 @@ class VisitorTest {
     @Test
     void visitEntityWithAttribute() {
         Entity entity = new Entity("MaClasse");
-        entity.getAttributes().add(new Attribute("int", "a"));
+        entity.getAttributes().add(new Attribute("a", SimpleType.INTEGER));
         entity.accept(visitor);
-        assertEquals("public class MaClasse{int a;}", visitor.getGeneratedCode());
+        assertEquals("public class MaClasse{Integer a;}", visitor.getGeneratedCode());
     }
 
     @Test
     void visitEntityWithAttributeAndMethods() {
         Entity entity = new Entity("MaClasse");
-        entity.getAttributes().add(new Attribute("int", "a"));
-        entity.getMethods().add(new Method("test", "String", "public"));
+        entity.getAttributes().add(new Attribute("a", SimpleType.INTEGER));
+        entity.getMethods().add(new Method("test", SimpleType.STRING, "public"));
         entity.accept(visitor);
-        assertEquals("public class MaClasse{int a;public String test(){return new String();}}", visitor.getGeneratedCode());
+        assertEquals("public class MaClasse{Integer a;public String test(){return new String();}}", visitor.getGeneratedCode());
     }
 
     @Test
@@ -50,22 +47,22 @@ class VisitorTest {
 
     @Test
     void visitAttribute() {
-        Attribute attribute = new Attribute("int", "a");
+        Attribute attribute = new Attribute("a", SimpleType.INTEGER);
         attribute.accept(visitor);
-        assertEquals("int a", visitor.getGeneratedCode());
+        assertEquals("Integer a", visitor.getGeneratedCode());
     }
 
     @Test
     void visitAttributeWithDefaultValue() {
-        Attribute attribute = new Attribute("int", "a");
+        Attribute attribute = new Attribute("a", SimpleType.INTEGER);
         attribute.setDefaultValue("999");
         attribute.accept(visitor);
-        assertEquals("int a=999", visitor.getGeneratedCode());
+        assertEquals("Integer a=999", visitor.getGeneratedCode());
     }
 
     @Test
     void visitMethod() {
-        Method method = new Method("test", "String", "public");
+        Method method = new Method("test", SimpleType.STRING, "public");
         method.accept(visitor);
         System.out.println(visitor.getGeneratedCode());
         assertEquals("public String test(){return new String();}", visitor.getGeneratedCode());

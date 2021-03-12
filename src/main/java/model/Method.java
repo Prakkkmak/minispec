@@ -11,32 +11,32 @@ public class Method implements IVisitable {
 
     protected String scope;
 
-    protected String type;
+    protected Type type;
 
     protected String name;
 
     protected List<Attribute> attributes;
 
-    public Method(String name, String type, String scope){
+    public Method(String name, Type type, String scope){
         this.attributes = new ArrayList<>();
         this.name = name;
         this.type = type;
         this.scope = scope;
     }
 
-    public Method(String name, String type){
+    public Method(String name, Type type){
         this(name, type, null);
     }
 
     public Method(String name){
-        this(name, "void", null);
+        this(name, SimpleType.VOID, null);
     }
 
     public String getScope() {
         return scope;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
