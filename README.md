@@ -8,7 +8,8 @@ Travaux réalisés :
 -Visiteur qui teste les cycles et les doubles definitions
 -Matérialisation des objets via Factory
 -Imbrication des types
--Beautify (incomplet)
--Tests et JUnit (incomplet)
+-Cardinalitées (génération code java mais pas matérialisation)
+-Beautify (incomplet mais fonctionne)
+-Tests et JUnit
 -Fichier XML
 -Programme Main qui prend en compte le fichier XML
