@@ -3,6 +3,8 @@ package main.java.factory;
 import main.java.model.MultipleType;
 import main.java.model.SimpleType;
 import main.java.model.Type;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 public class TypeFactory {
 
@@ -15,6 +17,29 @@ public class TypeFactory {
             instance = new  TypeFactory();
         }
         return instance;
+    }
+
+    public Type createType(Node node){
+        Node currentNode = node;
+        Element e = (Element) currentNode;
+        if(currentNode.getNodeName() .equals("simpletype") ){
+            return new SimpleType(e.getAttribute("symbol"));
+        }
+        else{
+            switch (e.getAttribute("symbol")){
+                case "List":
+                    return new MultipleType(MultipleType.Collection.LIST, createType(currentNode.getFirstChild()));
+                case "Bag":
+                    return new MultipleType(MultipleType.Collection.BAG, createType(currentNode.getFirstChild()));
+                case "Array":
+                    return new MultipleType(MultipleType.Collection.ARRAY, createType(currentNode.getFirstChild()));
+                case "Set":
+                    return new MultipleType(MultipleType.Collection.SET, createType(currentNode.getFirstChild()));
+                default:
+                    throw new IllegalStateException("Unexpected value: " + e.getAttribute("symbol"));
+            }
+
+        }
     }
 
     public Type generateType(String symbol, int cardMin, int cardMax) throws Exception {

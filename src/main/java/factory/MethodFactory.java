@@ -6,6 +6,7 @@ import org.w3c.dom.Node;
 
 public class MethodFactory {
     private static MethodFactory instance = null;
+    public TypeFactory factoryType = TypeFactory.getInstance();
 
     private MethodFactory(){
 
@@ -22,7 +23,7 @@ public class MethodFactory {
         Method method = null;
         if (node.getNodeType() == Node.ELEMENT_NODE){
             Element methodElement = (Element) node;
-            method = new Method(methodElement.getAttribute("name"), methodElement.getAttribute("type"), methodElement.getAttribute("scope"));
+            method = new Method(methodElement.getAttribute("name"), factoryType.createType(node.getFirstChild()), methodElement.getAttribute("scope"));
         }
         return method;
     }

@@ -75,7 +75,7 @@ public final class EntityFactory {
     }
 
 
-    public Entity createEntity(Node node){
+    public Entity createEntity(Node node) {
 
         methodFactory = MethodFactory.getInstance();
         attributeFactory = AttributeFactory.getInstance();
