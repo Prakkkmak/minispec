@@ -28,7 +28,7 @@ public class AttributeFactory {
             String value = attributeElement.getAttribute("value");
             Type type = typeFactory.createType(node.getFirstChild());
             attribute = new Attribute(name, type);
-            attribute.setDefaultValue(value);
+            if(!value.isEmpty()) attribute.setDefaultValue(value);
         }
         return attribute;
     }

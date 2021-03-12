@@ -2,6 +2,7 @@ package main.java;
 
 import main.java.factory.ModelFactory;
 import main.java.model.Model;
+import main.java.utils.Beautifer;
 import main.java.visitor.IVisitor;
 import main.java.visitor.Visitor;
 import org.w3c.dom.Document;
@@ -27,6 +28,8 @@ public class Main {
             Visitor visitor = new Visitor();
             model.accept(visitor);
             System.out.println(visitor.getGeneratedCode());
+            Beautifer beautifer = new Beautifer();
+            System.out.println(beautifer.Beautify(visitor.getGeneratedCode()));
         }catch(Exception e){
             e.printStackTrace();
         }
